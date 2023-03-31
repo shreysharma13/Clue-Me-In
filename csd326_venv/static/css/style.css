@@ -1,0 +1,38 @@
+.static-background{
+
+    background-image: url("/Users/shreysharma/Desktop/coding/HTML/My Website/photos/bg2.webp");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+  
+    /* background-position-y: -5%; */
+  }
+  .fixed-pos{
+    position: fixed;
+  
+  }
+  
+  .welcome{
+    color: #F0E9D2;
+    font-family: "henny penny", cursive;
+    font-size: 5vw;
+    margin: 5%;
+     /* -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: black;
+   */
+  }
+  
+  .intro{
+  /* ndlfsjdf */
+  }
+  .box{
+    margin: 0px;
+    text-align: center;
+    background-color: yellow;
+    background: rgba(228, 220, 207, .4);
+    width: 80%;
+    height: 50vw;
+    border-radius: 25px;
+    display: inline-block;
+  }
+  
