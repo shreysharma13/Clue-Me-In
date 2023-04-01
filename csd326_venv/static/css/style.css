@@ -9,7 +9,6 @@
   }
   .fixed-pos{
     position: fixed;
-  
   }
   
   .welcome{
@@ -21,18 +20,20 @@
       -webkit-text-stroke-color: black;
    */
   }
-  
-  .intro{
-  /* ndlfsjdf */
+
+  .box-container{
+    display: flex;
+
   }
+  
+  
   .box{
-    margin: 0px;
+    margin: 2vw;
     text-align: center;
     background-color: yellow;
     background: rgba(228, 220, 207, .4);
-    width: 80%;
-    height: 50vw;
+    height: 25vw;
     border-radius: 25px;
-    display: inline-block;
+    
   }
   
