@@ -13,7 +13,7 @@ app.config['SECRET_KEY'] = "xxxxxxxx"
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+mysqlconnector://username:password@localhost/db_name"
 # system_data = load_current_system_data()
-engine = create_engine(url='mysql+mysqlconnector://root:apple_13@localhost/dbms_project_pt1')
+engine = create_engine(url='mysql+mysqlconnector://username:password@localhost/db_name')
 # meta = MetaData()
 # meta.reflect(bind=engine)
 conn = engine.connect()
@@ -38,7 +38,7 @@ class Garbage(db.Model):
 app.app_context().push()
 
 
-# mysql_engine = ce("mysql://root:apple_13@localhost/dbms_project_pt1")
+
 
 users = Garbage.query.all()
 print(type(users))
