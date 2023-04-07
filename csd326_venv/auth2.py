@@ -3,59 +3,45 @@ from flask_login import LoginManager, UserMixin, login_required, login_user, log
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
+from models import Base, Mem, engine
 
 # Configure login manager
 login_manager = LoginManager()
 
 # Connect to MySQL database on localhost
-engine = create_engine('mysql+mysqlconnector://username:password@localhost/db_name')
+# engine = create_engine('mysql+mysqlconnector://')
+
+#this session will be used in other files
+session = Session(bind=engine)
 
 # Reflect database and generate Base class
-Base = automap_base()
-Base.prepare(engine, reflect=True)
+# Base = automap_base()
+# Base.prepare(engine, reflect=True)
 
-# Assign the 'member' table to the Member class
-Member = Base.classes.member
-# var=Session(engine).query(Member).first()
-# print(var.ID)
-# print(type(var))
+# # Assign the 'Member' table to the Member class
+# Mem = Base.classes.Member
 
-# Load user from database by id
 @login_manager.user_loader
 def load_user(user_id):
     with Session(engine) as session:
-        user = session.query(Member).get(user_id)
+        user = session.query(Mem).get(user_id)
         if user:
             loaded_user = User()
-            loaded_user.id = user.ID
-            loaded_user.name = user.name
-            loaded_user.password = user.password
-            loaded_user.type = user.type
-            loaded_user.club_id = user.club_id
+            loaded_user.id = user.M_No
+            loaded_user.name = user.M_Name
+            loaded_user.password = user.Password
+            loaded_user.type = user.M_Type
+            loaded_user.club_id = user.Club_ID
+            
             return loaded_user
         else:
             return None
 
+
+
 # Login function
 def logger():
-    # if request.method == 'POST':
-    #     username = request.form['username']
-    #     password = request.form['password']
-    #     with Session(engine) as session:
-    #         user = session.query(Member).filter(Member.name == username).first()
-    #         if user and user.password == password:
-    #             loaded_user = User()
-    #             loaded_user.id = user.id
-    #             loaded_user.name = user.name
-    #             loaded_user.password = user.password
-    #             loaded_user.type = user.type
-    #             loaded_user.club_id = user.club_id
-    #             login_user(loaded_user)
-    #             return redirect(url_for('home'))
-    #         else:
-    #             return render_template('auth.html', message='Invalid username or password.')
-    # else:
-    #     return render_template('login.html')
+    
 #
     if current_user.is_authenticated:
         return redirect(url_for('pvt_dashboard'))
@@ -65,14 +51,14 @@ def logger():
         username = request.form['username']
         password = request.form['password']
         with Session(engine) as session:
-            user = session.query(Member).filter(Member.name == username).first()
-            if user and user.password == password:
+            user = session.query(Mem).filter(Mem.M_Name == username).first()
+            if user and user.Password == password:
                 loaded_user = User()
-                loaded_user.id = user.ID
-                loaded_user.name = user.name
-                loaded_user.password = user.password
-                loaded_user.type = user.type
-                loaded_user.club_id = user.club_id
+                loaded_user.id = user.M_No
+                loaded_user.name = user.M_Name
+                loaded_user.password = user.Password
+                loaded_user.type = user.M_Type
+                loaded_user.club_id = user.Club_ID
                 login_user(loaded_user)
                 return redirect(url_for('pvt_dashboard'))
             else:
