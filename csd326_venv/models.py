@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 
 # create an engine object
-engine = create_engine('mysql+mysqlconnector://username:password@localhost/db_name')
+engine = create_engine('mysql+mysqlconnector://username:password@localhost/database_name')
 
 # create a session object
 session = Session(engine)
@@ -19,6 +19,9 @@ Mem = Base.classes.Member
 
 # get the Club class from the automap base
 Club = Base.classes.Club
+
+Pub_dash = Base.classes.Public_Dash
+
 
 
 

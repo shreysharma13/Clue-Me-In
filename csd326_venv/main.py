@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from auth2 import login_manager, logger, logout, User, session
 from models import Base, Mem, Club
+from queries import get_pubdash
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
 
@@ -26,7 +27,7 @@ def home():
 
 @app.route('/public_dashboard/<club_id>',methods=['GET', 'POST'])
 def public_dashboard(club_id):
-    return render_template('dash.html',club_id = club_id, messages="welcome to" + club_id)
+    return render_template('dash.html',events= get_pubdash(club_id))
 
 
 # trial for login page ,snippet from flask official page
@@ -38,7 +39,7 @@ def login():
 @app.route('/pvt_dashboard')
 @login_required
 def pvt_dashboard():
-    return render_template('private_dashboard.html')
+    return render_template('pvt_dash.html')
 
 # snippet end
 

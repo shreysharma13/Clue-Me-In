@@ -8,6 +8,13 @@
     <title>Document</title>
 </head>
 <body>
-    hi this is the page for {{club_id}}
+    
+    {% block content %}
+    {%for i in events%}
+<!--events contains all public events and announcements  -->
+    <p>{{i.Data}}</p>
+    
+    {%endfor%}
+    {% endblock %}
 </body>
 </html>

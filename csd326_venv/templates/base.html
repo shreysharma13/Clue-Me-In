@@ -20,15 +20,24 @@
           <ul class="navbar-nav ms-auto">
       
         <li class="nav-item">
+          <!-- redirects to home page  -->
           <a class="nav-link" href="{{ url_for('home') }}">Home</a>
         </li>
+        <!-- redirects to login page -->
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('login') }}">login</a>
         </li>
+        <!-- only displays if user is logged in -->
         {% if current_user.is_authenticated %}
         <li class="nav-item">
             <a class="nav-link" href="{{ url_for('logout') }}">logout</a>
         </li>
+        <!-- gives admin account access to page that adds or removes club members -->
+          {% if current_user.id == 0 and current_user.name == "admin" %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Manage</a>
+        </li>
+          {% endif %}
         {% endif %}
         
         <li class="nav-item">
