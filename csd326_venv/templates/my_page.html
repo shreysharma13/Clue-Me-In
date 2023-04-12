@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+
+    {% block content %}
+   <div class="box-container d-flex flex-wrap justify-content-center">
+    {%for i in myclubs%}
+    <!-- btn_clicked_pvt returns club if for button clicked using eventlistener NEEDS USER AUTH-->
+    <button id ={{i.Club_ID}} type ="submit" class=" box col-3" onclick="btn_clicked_pvt(this.id)">
+       
+        <!-- <button id="{{i}}"> this is a demo button for {{i}}</button> -->
+        <p>{{ i.Club_ID }} </p>
+    </button>
+    {%endfor%}
+{% endblock %}
+</body>
+</html>
