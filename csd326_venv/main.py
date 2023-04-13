@@ -2,18 +2,23 @@ from crypt import methods
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from auth2 import login_manager, logger, logout, User, session
-from models import Base, Login_user, Club
-from queries import get_pubdash, get_userClubs, get_pvtdash
+from models import Base, Login_user, Club, Pub_dash
+from queries import get_pubdash, get_userClubs, get_pvtdash, get_thisclub
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
 
 # Configure login manager
 login_manager.init_app(app)
 
-
 @app.route('/',methods=['GET', 'POST'])
 def home():
+    return render_template('home.html',events=session.query(Pub_dash).all())
+
+
+@app.route('/clubs',methods=['GET', 'POST'])
+def allClubs():
     flash('goodmorning!')
+    print (session.query(Club).all())
     return render_template('index.html', clubs= session.query(Club).all())
 
 
@@ -36,7 +41,7 @@ def secret():
 
 @app.route('/public_dashboard/<club_id>',methods=['GET', 'POST'])
 def public_dashboard(club_id):
-    return render_template('dash.html',events= get_pubdash(club_id))
+    return render_template('dash.html',events= get_pubdash(club_id), thisClub= get_thisclub(club_id))
 
 @app.route('/myPage')
 @login_required

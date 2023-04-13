@@ -10,6 +10,39 @@
 <body>
     
     {% block content %}
+    
+    <div class="container mt-5" style="position: relative;">
+        <div class="row">
+          <div class="col-6">
+            <img src="{{ url_for('static', filename='images/clubs_page_img.jpg') }}" class="img-fluid ">
+          </div>
+          <div class="col-6 d-flex align-items-center justify-content-center">
+            <div class="text-center">
+              <h1 class="mb-0 overlay-heading">{{thisClub.Club_Name}} </h1>
+              <p class="fs-2">{{thisClub.Description}}</p>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <!--      CONTAINS MEMBER CARDS WITH HORIZONTAL SCROLL       -->
+    <div class="mt-5 container-fluid bg-success">
+        <div class="row flex-nowrap overflow-auto">
+    {%for i in range(0,10) %}
+        <div class="card m-2" style="width: 25rem;">
+            <img src="{{ url_for('static', filename='images/clubs_page_img.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+    {%endfor%}
+     </div>
+    </div>
+      
+      
     {%for i in events%}
 <!--events contains all public events and announcements  -->
     <p>{{i.Data}}</p>

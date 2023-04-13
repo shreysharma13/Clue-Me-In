@@ -36,4 +36,26 @@
     border-radius: 25px;
     
   }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; Sets the height of the container to 100% of the viewport height */
+    overflow: auto; /* Allows scrolling if the image height exceeds the viewport height*/
+  }
   
+  .opening-img {
+    /* width: 80%; */
+    height: auto; /* Sets the height of the image to maintain the aspect ratio */
+  }
+  
+  .overlay-heading{
+    position: absolute;
+              font-size: 5rem;
+              top: 0;
+              left: 50%;
+              color: brown;
+              transform: translate(-70%, -50%);
+              letter-spacing: 0.3rem;
+  }

@@ -16,16 +16,16 @@
 <body class="static-background">
     <header>
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-pos">
-            <a class="navbar-brand" href="#">Clue Me In!!</a>
+            <a class="navbar-brand" href="{{ url_for('home') }}">Clue Me In!!</a>
           <ul class="navbar-nav ms-auto">
       
         <li class="nav-item">
           <!-- redirects to home page  -->
-          <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+          <a class="nav-link" href="{{ url_for('allClubs') }}">All Clubs</a>
         </li>
         <!-- redirects to login page -->
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('login') }}">login</a>
+          <a class="nav-link" href="{{ url_for('login') }}">My Clubs</a>
         </li>
         <!-- only displays if user is logged in -->
         {% if current_user.is_authenticated %}
