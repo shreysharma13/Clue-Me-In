@@ -7,19 +7,9 @@ from models import Base, Login_user, engine
 
 # Configure login manager
 login_manager = LoginManager()
-
-# Connect to MySQL database on localhost
-# engine = create_engine('mysql+mysqlconnector://')
-
-#this session will be used in other files
 session = Session(bind=engine)
 
-# Reflect database and generate Base class
-# Base = automap_base()
-# Base.prepare(engine, reflect=True)
 
-# # Assign the 'Member' table to the Member class
-# Mem = Base.classes.Member
 
 @login_manager.user_loader
 def load_user(user_id):

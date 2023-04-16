@@ -1,9 +1,13 @@
+import base64
+from PIL import Image
+import io
+from datetime import datetime
 from crypt import methods
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from auth2 import login_manager, logger, logout, User, session
 from models import Base, Login_user, Club, Pub_dash
-from queries import get_pubdash, get_userClubs, get_pvtdash, get_thisclub
+from queries import get_pubdash, get_userClubs, get_pvtdash, get_thisclub, get_myDetails, get_allEvents, add_event, add_Pvtevent
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
 
@@ -12,13 +16,12 @@ login_manager.init_app(app)
 
 @app.route('/',methods=['GET', 'POST'])
 def home():
+    print(get_allEvents())
     return render_template('home.html',events=session.query(Pub_dash).all())
 
 
 @app.route('/clubs',methods=['GET', 'POST'])
 def allClubs():
-    flash('goodmorning!')
-    print (session.query(Club).all())
     return render_template('index.html', clubs= session.query(Club).all())
 
 
@@ -41,19 +44,42 @@ def secret():
 
 @app.route('/public_dashboard/<club_id>',methods=['GET', 'POST'])
 def public_dashboard(club_id):
-    return render_template('dash.html',events= get_pubdash(club_id), thisClub= get_thisclub(club_id))
+    l = get_thisclub(club_id).Display_img
+    return render_template('dash.html',events= get_pubdash(club_id), thisClub= get_thisclub(club_id),link = l)
 
 @app.route('/myPage')
-@login_required
+# @login_required
 @login_required
 def mypage():
+    print("check func")
     print(get_userClubs())
     return render_template('my_page.html', myclubs=get_userClubs())
 
 @app.route('/pvt_dashboard/<club_id>',methods=['GET', 'POST'])
 @login_required
 def pvt_dashboard(club_id):
-    return render_template('pvt_dash.html', deadlines = get_pvtdash(club_id))
+    if request.method == 'POST' and request.form['submit']=="pubform":
+        fname = request.form['submit']
+        content = request.form['content']
+        type = request.form['type']
+        timestamp = request.form['date']
+        img_link = request.form['display']
+        add_event(club_id,content,type,timestamp,img_link)
+        return render_template('pvt_dash.html', deadlines = get_pvtdash(club_id),  myDetails = get_myDetails(current_user.id,club_id),cid=club_id,form_name=fname)
+
+
+    if request.method == 'POST' and request.form['submit']=="pvtform":
+        fname = request.form['submit']
+        content = request.form['pvt_content']
+        type = request.form['pvt_type']
+        timestamp = request.form['pvt_date']
+       
+        add_Pvtevent(club_id,content,type,timestamp)
+        return render_template('pvt_dash.html', deadlines = get_pvtdash(club_id),  myDetails = get_myDetails(current_user.id,club_id),cid=club_id,form_name=fname)
+    
+    else:        
+        return render_template('pvt_dash.html', deadlines = get_pvtdash(club_id),  myDetails = get_myDetails(current_user.id,club_id),cid = club_id)
+
 
 # # snippet end
 

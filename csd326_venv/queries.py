@@ -1,6 +1,7 @@
 from models import Pub_dash,Pvt_dash , Base, Mem, Club
 from auth2 import session
 from flask_login import current_user
+from datetime import datetime
 
 def get_pubdash(cid):
     events = session.query(Pub_dash).filter_by(C_ID=cid).order_by(Pub_dash.Timestamp).all()
@@ -17,3 +18,26 @@ def get_thisclub(cid):
 def get_userClubs():
     myclubs = session.query(Mem).filter_by(M_ID=current_user.id).all()
     return myclubs
+
+def get_myDetails(mid,cid):
+    x = session.query(Mem).filter_by(M_ID=mid, Club_ID=cid).first()
+    return x
+
+def get_allEvents():
+    now = datetime.now()
+    x = session.query(Pub_dash).filter_by(Data_Type=1).filter(Pub_dash.Timestamp > now).all()
+    
+def add_event(cid,content,type,timestamp,img_link):
+    new_record = Pub_dash(C_ID=cid,Data= content,Data_Type=type,Timestamp=timestamp,Display_img=img_link)
+    # # add the new record to the session
+    session.add(new_record)
+    # # commit the changes to the database
+    session.commit()
+    
+def add_Pvtevent(cid,content,type,timestamp):
+    new_record = Pvt_dash(Cid=cid,Data= content,Data_Type=type,Timestamp=timestamp)
+    # # add the new record to the session
+    session.add(new_record)
+    # # commit the changes to the database
+    session.commit()
+    
