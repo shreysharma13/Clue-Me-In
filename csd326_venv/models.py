@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 
 # create an engine object
-engine = create_engine('mysql+mysqlconnector://username:password@localhost/database')
+engine = create_engine('mysql+mysqlconnector://root:apple_13@localhost/main')
 # username:password@localhost/database
 # create a session object
 session = Session(engine)

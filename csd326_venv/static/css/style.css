@@ -1,3 +1,7 @@
+.bg-custom{
+ background-color: #391c6f;
+}
+
 .static-background{
 
     background-image: url("/Users/shreysharma/Desktop/coding/HTML/My Website/photos/bg2.webp");
@@ -52,10 +56,15 @@
   
   .overlay-heading{
     position: absolute;
-              font-size: 5rem;
-              top: 0;
-              left: 50%;
-              color: brown;
-              transform: translate(-70%, -50%);
-              letter-spacing: 0.3rem;
+    font-size: 5rem;
+    top: 0;
+    left: 50%;
+    color: brown;
+    transform: translate(-70%, -50%);
+    letter-spacing: 0.3rem;
+  }
+
+  .overlay-subheading{
+    transform: translate(10%,-50%);
+    font-size: 5rem;;
   }

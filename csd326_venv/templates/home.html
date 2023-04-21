@@ -1,14 +1,53 @@
 {% extends 'base.html'%}
 
 {%block content %}
-<div class="col-12"> 
+<!-- <div class="col-12"> 
     <div class="row">
         <h1 class="fs-6 text-center">Clue Me In!</h1>
-    </div>
+    </div> -->
+<!-- </div> -->
+<div class="image-container">
+    <img class="opening-img" style = "width: 100%;"src="{{ url_for('static', filename='images/home_page.jpg') }}" alt="Image description">
+  </div>
+<div style ="height: 40vh;">
+  about pageS
 </div>
+<div class="mt-5 container-fluid">
+  <h1>Events</h1>
+    <div class="row flex-nowrap overflow-auto">
+      {%if not events%}
+      <h2>No upcoming events</h2>
+      {%else%}
 {%for i in events %}
+    <div class="card m-2" style="width: 25rem;">
+        <img src="{{i.Display_img}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <!-- <h5 class="card-title">Card title</h5> -->
+          <p class="card-text">{{i.Data}}</p>
+          <a href="#" class="btn btn-primary">dummy button</a>
+        </div>
+      </div>
+{%endfor%}
+{%endif%}
+ </div>
 
-<p>{{i.Data}}</p>
+ <h1>Advertisements</h1>
+ <div class="row flex-nowrap overflow-auto">
+  {%if not events%}
+  <h2>no ads</h2>
+  {%else%}
+{%for i in ads %}
+ <div class="card m-2" style="width: 25rem;">
+     <img src="{{i.Display_img}}" class="card-img-top" alt="...">
+     <div class="card-body">
+       <!-- <h5 class="card-title">Card title</h5> -->
+       <p class="card-text">{{i.Data}}</p>
+       <a href="#" class="btn btn-primary">dummy button</a>
+     </div>
+   </div>
+{%endfor%}
+{%endif%}
+</div>
 
-{% endfor %}
+</div>
 {% endblock %}

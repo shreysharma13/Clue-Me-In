@@ -13,9 +13,9 @@
     {% endblock %}
 
 </head>
-<body class="static-background">
+<body class="bg-custom static-background">
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-pos">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-pos bg-custom">
             <a class="navbar-brand" href="{{ url_for('home') }}">Clue Me In!!</a>
           <ul class="navbar-nav ms-auto">
       
@@ -30,20 +30,15 @@
         <!-- only displays if user is logged in -->
         {% if current_user.is_authenticated %}
         <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('logout') }}">logout</a>
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
         </li>
-        <!-- gives admin account access to page that adds or removes club members -->
-          {% if current_user.id == 0 and current_user.name == "admin" %}
+        <!-- gives admin account access to page that adds or removes club members  current_user.id == 0   -->
+          {% if current_user.name == "admin" %}
           <li class="nav-item">
-            <a class="nav-link" href="#">Manage</a>
+            <a class="nav-link" href="{{ url_for('manage') }}">Manage</a>
         </li>
           {% endif %}
         {% endif %}
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#">extra button</a>
-         
-        </li>
       </ul>
       </nav>
       </header>

@@ -28,27 +28,44 @@
 
 
     <!--      CONTAINS MEMBER CARDS WITH HORIZONTAL SCROLL       -->
-    <div class="mt-5 container-fluid bg-success">
+    <div class="mt-5 container-fluid">
+      <h1>Events</h1>
         <div class="row flex-nowrap overflow-auto">
-    {%for i in range(0,10) %}
+          {%if not events%}
+          <h2>No upcoming events</h2>
+          {%else%}
+    {%for i in events %}
         <div class="card m-2" style="width: 25rem;">
-            <img src="{{ url_for('static', filename='images/clubs_page_img.jpg') }}" class="card-img-top" alt="...">
+            <img src="{{i.Display_img}}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <!-- <h5 class="card-title">Card title</h5> -->
+              <p class="card-text">{{i.Data}}</p>
+              <a href="#" class="btn btn-primary">dummy button</a>
             </div>
           </div>
     {%endfor%}
+    {%endif%}
      </div>
+
+     <h1>Advertisements</h1>
+     <div class="row flex-nowrap overflow-auto">
+      {%if not events%}
+      <h2>no ads</h2>
+      {%else%}
+ {%for i in ads %}
+     <div class="card m-2" style="width: 25rem;">
+         <img src="{{i.Display_img}}" class="card-img-top" alt="...">
+         <div class="card-body">
+           <!-- <h5 class="card-title">Card title</h5> -->
+           <p class="card-text">{{i.Data}}</p>
+           <a href="#" class="btn btn-primary">dummy button</a>
+         </div>
+       </div>
+ {%endfor%}
+ {%endif%}
+  </div>
+
     </div>
-      
-      
-    {%for i in events%}
-<!--events contains all public events and announcements  -->
-    <p>{{i.Data}}</p>
-    
-    {%endfor%}
     {% endblock %}
 </body>
 </html>
