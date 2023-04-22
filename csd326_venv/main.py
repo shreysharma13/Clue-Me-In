@@ -1,4 +1,5 @@
 import base64
+from turtle import position
 from PIL import Image
 import io
 from datetime import datetime
@@ -7,7 +8,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from auth2 import login_manager, logger, logout, User, session
 from models import Base, Login_user, Club, Pub_dash
-from queries import get_pubdash_events,get_pubdash_ads, get_userClubs, get_thisclub, get_myDetails, get_allEvents, add_event, add_Pvtevent,get_allAds, add_club,get_pvtdash_deadlines,get_pvtdash_meetings
+from queries import get_pubdash_events,get_pubdash_ads, get_userClubs, get_thisclub, get_myDetails, get_allEvents, add_event, add_Pvtevent,get_allAds, add_club,get_pvtdash_deadlines,get_pvtdash_meetings,add_member
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
 
@@ -29,6 +30,12 @@ def manage():
             content = request.form['content']
             img_link = request.form['img_link']
             add_club(cname,content,img_link)
+    if request.method == 'POST' and request.form['submit']=="memberform":
+            mid = request.form['mid']
+            cid = request.form['cid']
+            utype = request.form['utype']
+            position = request.form['position']
+            add_member(mid,cid,utype,position)
     return render_template('manage.html')
 
 @app.route('/clubs',methods=['GET', 'POST'])

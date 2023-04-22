@@ -1,3 +1,5 @@
+from pydoc import describe
+from turtle import pos
 from models import Pub_dash,Pvt_dash , Base, Mem, Club
 from auth2 import session
 from flask_login import current_user
@@ -66,4 +68,12 @@ def add_club(cname,content,img_link):
     session.add(new_record)
     # # commit the changes to the database
     session.commit()
+    newClub=session.query(Club).filter_by(Club_Name=cname).first()
+    add_member(1,newClub.Club_ID,0,"admin")
     
+def add_member(mid,cid,utype,position):
+    new_record = Mem(M_ID=mid,Club_ID=cid,U_type=utype,Description=position)
+    # # add the new record to the session
+    session.add(new_record)
+    # # commit the changes to the database
+    session.commit()

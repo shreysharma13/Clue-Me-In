@@ -4,7 +4,7 @@
  <div class="d-flex">
 
 
-  <form class="col-6 p-4" name ="public_announcements"  action="{{ url_for('manage') }}" method="POST">
+  <form class="col-6 p-4" name ="add_club"  action="{{ url_for('manage') }}" method="POST">
     <div class="form-group">
       <label for="username">Club Name</label>
       <input type="text" class="form-control" id="cname" name="cname">
@@ -21,7 +21,7 @@
   </form>
 
 
-  <form class="col-6 p-2" name ="private_announcements"  action="{{ url_for('manage') }}" method="POST">
+  <form class="col-6 p-2" name ="add_member"  action="{{ url_for('manage') }}" method="POST">
     <div class="form-group">
       <label for="username">Member ID</label>
       <input type="text" class="form-control" id="mid" name="mid">
