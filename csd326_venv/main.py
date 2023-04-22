@@ -7,7 +7,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from auth2 import login_manager, logger, logout, User, session
 from models import Base, Login_user, Club, Pub_dash
-from queries import get_pubdash_events,get_pubdash_ads, get_userClubs, get_pvtdash, get_thisclub, get_myDetails, get_allEvents, add_event, add_Pvtevent,get_allAds, add_club
+from queries import get_pubdash_events,get_pubdash_ads, get_userClubs, get_thisclub, get_myDetails, get_allEvents, add_event, add_Pvtevent,get_allAds, add_club,get_pvtdash_deadlines,get_pvtdash_meetings
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
 
@@ -78,7 +78,7 @@ def pvt_dashboard(club_id):
         timestamp = request.form['date']
         img_link = request.form['display']
         add_event(club_id,content,type,timestamp,img_link)
-        return render_template('pvt_dash.html', deadlines = get_pvtdash(club_id),  myDetails = get_myDetails(current_user.id,club_id),cid=club_id,form_name=fname)
+        return render_template('pvt_dash.html', deadlines = get_pvtdash_deadlines(club_id),meetings=get_pvtdash_meetings(club_id),  myDetails = get_myDetails(current_user.id,club_id),cid=club_id,form_name=fname)
 
     if request.method == 'POST' and request.form['submit']=="pvtform":
         fname = request.form['submit']
@@ -87,10 +87,10 @@ def pvt_dashboard(club_id):
         timestamp = request.form['pvt_date']
        
         add_Pvtevent(club_id,content,type,timestamp)
-        return render_template('pvt_dash.html', deadlines = get_pvtdash(club_id),  myDetails = get_myDetails(current_user.id,club_id),cid=club_id,form_name=fname)
+        return render_template('pvt_dash.html',  deadlines = get_pvtdash_deadlines(club_id),meetings=get_pvtdash_meetings(club_id),  myDetails = get_myDetails(current_user.id,club_id),cid=club_id,form_name=fname)
     
     else:        
-        return render_template('pvt_dash.html', deadlines = get_pvtdash(club_id),  myDetails = get_myDetails(current_user.id,club_id),cid = club_id)
+        return render_template('pvt_dash.html',  deadlines = get_pvtdash_deadlines(club_id),meetings=get_pvtdash_meetings(club_id),  myDetails = get_myDetails(current_user.id,club_id),cid = club_id)
 
 
 # # snippet end

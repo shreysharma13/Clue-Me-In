@@ -1,19 +1,66 @@
 {%extends 'base.html' %}  
 
 {% block content %}
-<form method="POST" action="{{ url_for('manage') }}">
+ <div class="d-flex">
+
+
+  <form class="col-6 p-4" name ="public_announcements"  action="{{ url_for('manage') }}" method="POST">
     <div class="form-group">
       <label for="username">Club Name</label>
       <input type="text" class="form-control" id="cname" name="cname">
     </div>
     <div class="form-group">
       <label>Description</label>
-      <textarea class="form-control" id="content" name="content"></textarea>
+      <textarea rows="3" class="form-control row-2" id="content" name="content"></textarea>
     </div>
     <div class="form-group">
         <label>Club Image</label>
         <input class="form-control" id="img_link" name="img_link">
       </div>
-    <button type="submit" name="submit" value="clubform" class="btn btn-primary">Login</button>
+    <button type="submit" name="submit" value="clubform" class="btn btn-primary">Add</button>
+  </form>
+
+
+  <form class="col-6 p-2" name ="private_announcements"  action="{{ url_for('manage') }}" method="POST">
+    <div class="form-group">
+      <label for="username">Member ID</label>
+      <input type="text" class="form-control" id="mid" name="mid">
+    </div>
+    <div class="form-group">
+      <label>Club ID</label>
+      <input class="form-control" id="cid" name="cid">
+    </div>
+    <div class="form-group">
+        <label>User Type</label>
+        <input class="form-control" id="utype" name="utype">
+      </div>
+      <div class="form-group">
+        <label>Position</label>
+        <input class="form-control" id="position" name="position">
+      </div>
+    <button type="submit" name="submit" value="memberform" class="btn btn-primary">Add</button>
+  </form>
+
+  
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<form method="POST" action="{{ url_for('manage') }}">
+    
+  </form>
+
+
+  <form method="POST" action="{{ url_for('manage') }}">
+   
   </form>
 {% endblock %} 

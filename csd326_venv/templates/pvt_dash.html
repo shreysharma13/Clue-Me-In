@@ -1,18 +1,89 @@
 {%extends 'base.html' %}
 
 {% block content %}
-this is private dashboard for {{myDetails.U_type}}
 
-{%if myDetails.U_type == 2 %}
-You are the core !!!!!!
+<div class="section">
+		<div class="container">
+			<div class="row full-height justify-content-center">
+				<div class="col-12 pb-1 pt-0 text-center align-self-center">
+					<div class="section pt-sm-2 text-center">
+						<h6 class="mb-0 pb-3"><span>Public </span><span>Private</span></h6>
+			          	<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+			          	<label for="reg-log"></label>
+						<div class="card-3d-wrap mx-auto">
+							<div class="card-3d-wrapper">
+								<div class="card-front">
+									<div class="center-wrap">
+										<div class="section text-center">
+											<h4 class="mb-4 pb-3">Public</h4>
+                      <!-- PUBLIC FORM STARTS HERE -->
+                      <form action="{{ url_for('pvt_dashboard', club_id=cid) }}" method="POST">
+											<div class="form-group">
+                        <textarea type="text" class="form-control text-center" placeholder="Content" id="content" name="content" rows="2"></textarea>
+											</div>	
+											<div class="form-group mt-2">
+                        <input type="text" class="form-control" placeholder="Type" id="type" name="type">
+											</div>
+                      <div class="form-group mt-2">
+                        <input type="datetime-local" placeholder="Date"class="form-control" id="date" name="date">
+											</div>
+                      <div class="form-group mt-2">
+                        <input type="text" class="form-control" placeholder="Image Link" id="display" name="display">
+											</div>
+                      <div class="form-group mt-2">
+                        <button type="submit" name ="submit" value="pubform" class="btn btn-primary ">Submit</button>
+											</div>
+                    </form>
+				      					</div>
+			      					</div>
+                      
+			      				</div>
 
-<div class="d-flex">
+
+								<div class="card-back">
+									<div class="center-wrap">
+										<div class="section text-center">
+											<h4 class="mb-4 pb-3">Sign Up</h4>
+
+                      <!-- private form starts here -->
+                      <form action="{{ url_for('pvt_dashboard', club_id=cid) }}" method="POST">
+                        <div class="form-group">
+                          <textarea class="form-control"placeholder="Content" id="pvt_content" name="pvt_content" rows="2"></textarea>
+                        </div>	
+
+                        <div class="form-group mt-2">
+                          <input type="text" class="form-control" placeholder="Type" id="pvt_type" name="pvt_type">
+                        </div>
+                        
+                        <div class="form-group mt-2">
+                          <input type="datetime-local" class="form-control" placeholder="Date" id="pvt_date" name="pvt_date">
+                        </div>
+
+                        <div class="form-group mt-2">
+                          <button type="submit" name ="submit" value="pvtform" class="btn btn-primary">Submit</button>
+                        </div>
+
+                      </form>
+									
+			      					</div>
+			      				</div>
+			      			</div>
+			      		</div>
+			      	</div>
+		      	</div>
+	      	</div>
+	    </div>
+	</div>
+</div>
+
+<!-- <div class="d-flex">
 
 
   <form class="col-6" name ="public_announcements" action="{{ url_for('pvt_dashboard', club_id=cid) }}" method="post">
 <div class="form-group p-5 ">
   <h1>Public Dashboard</h1>
     <div class="form-group">
+     
         <label for="content">Content</label>
         <textarea type="text" class="form-control text-center" id="content" name="content" rows="2"></textarea>
       </div>
@@ -28,8 +99,8 @@ You are the core !!!!!!
         <label for="type">Image Link</label>
         <input type="text" class="form-control" id="display" name="display">
       </div>
-      <div class="btn">
-      <button type="submit" name ="submit" value="pubform" class="btn btn-primary">Submit</button>
+      <div class="btn ps-0">
+      <button type="submit" name ="submit" value="pubform" class="btn btn-primary ">Submit</button>
       </div>
 </div>
   </form>
@@ -50,75 +121,61 @@ You are the core !!!!!!
     <label for="date">Date</label>
     <input type="datetime-local" class="form-control" id="pvt_date" name="pvt_date">
   </div class>
-  <div class="btn text-center">
+  <div class="btn ps-0">
   <button type="submit" name ="submit" value="pvtform" class="btn btn-primary">Submit</button>
 </div>
 </div>
   </form>
 
-  <!-- {% if form_name %}
-  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="toast-body">
-    <p>heheheheheheheh</p>
-  </div>
-  </div>
+  
 
-  <script>
-  $(document).ready(function(){
-    $('.toast').toast('show');
-  });
-  console.log('Toaster displayed');
-  </script>
-  {% endif %} -->
-
-
-
-</div>
-  <!-- {% endif %} -->
+</div> -->
 {% if deadlines %}
   <div class="container">
-    <table class="table">
+    <table class="table table-dark table-striped">
       <thead>
         <tr>
-          <th scope="col">Assigned</th>
-          <th scope="col">Due-date</th>
+          <th class="w-50" scope="col">Assigned</th>
+          <th class="w-25" scope="col">Due-date</th>
         </tr>
       </thead>
       <tbody>
         {% for i in deadlines %}
         <tr>
           
-          <td>{{i.Data}}</td>
-          <td>{{i.Timestamp}}</td>
+          <td >{{i.Data}}</td>
+          <td >{{i.Timestamp}}</td>
       </tr>
       {% endfor %}
       </tbody>
     </table>
     {%else%}
     <h2>No due deadlines</h2>
-    </div>
+  </div>
 {% endif %}
 
 {% if meetings %}
-  <div class="container">
-    <table class="table">
+   
+    <table class="table table-dark table-striped">
       <thead>
         <tr>
-          <th scope="col">Meetings</th>
-          <th scope="col">Date</th>
+          <th class="w-50" scope="col">Meetings</th>
+          <th class="w-25" scope="col">Due-Date</th>
         </tr>
       </thead>
       <tbody>
         {% for i in meetings %}
         <tr>
           <td>{{i.Data}}</td>
-          <td>{{i.Timestamp}}</td>
+          <td >{{i.Timestamp}}</td>
       </tr>
       {% endfor %}
       </tbody>
     </table>
     {%else%}
     <h2>No upcoming meetings</h2>
-  </div>
+  
   {% endif %}
+
+	
   {% endblock %}
