@@ -8,7 +8,7 @@
 {% endblock %}
 <!-- creates a button for each registered club -->
 {% block content %}
-<div class="image-container">
+<div class="image-container pb-5">
     <img class="opening-img" style = "width: 100%;"src="{{ url_for('static', filename='images/club_display.jpg') }}" alt="Image description">
   </div>
   
@@ -18,7 +18,7 @@
     <button id ={{i.Club_ID}} type ="submit" class=" box col-3" onclick="btn_clicked(this.id)">
        
         <!-- <button id="{{i}}"> this is a demo button for {{i}}</button> -->
-        <p>{{ i.Club_Name }} </p>
+        <h4>{{ i.Club_Name }} </h4>
     </button>
     {%endfor%}
 {% endblock %}

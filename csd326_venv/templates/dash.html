@@ -17,11 +17,11 @@
             <img class= "col-4"style="width: 35rem" src={{link}} alt="Image">
             <!-- <img src="{{ url_for('static', filename='images/clubs_page_img.jpg') }}" class="img-fluid "> -->
           </div>
-          <div class="col-6 d-flex align-items-center justify-content-center">
+          <div class="col-6 d-flex  justify-content-center">
             <div class="text-center">
-              <h1 class="mb-0 overlay-heading">{{thisClub.Club_Name}} </h1>
-              <div class="container" style="overflow:hidden">
-              <p class="fs-2">{{thisClub.Description}}</p>
+              <h1 class="mb-0" style="font-size: 5rem;">{{thisClub.Club_Name}} </h1>
+              <div class="container mt-lg-5" style="overflow:hidden">
+              <p class="fs-4 ">{{thisClub.Description}}</p>
             </div>
             </div>
           </div>
@@ -37,30 +37,30 @@
           <h2>No upcoming events</h2>
           {%else%}
     {%for i in events %}
-        <div class="card m-2" style="width: 25rem;">
+        <div class="card m-2" style="background-color:#E5E5E5;width: 25rem;">
             <img src="{{i.Display_img}}" class="card-img-top" alt="...">
             <div class="card-body">
               <!-- <h5 class="card-title">Card title</h5> -->
-              <p class="card-text">{{i.Data}}</p>
-              <a href="#" class="btn btn-primary">dummy button</a>
+              <p class="card-text" style="color: #240536;">{{i.Data}}</p>
+              <a href="#" class="btn " style=" color: #E5E5E5;background-color: #240536;">dummy button</a>
             </div>
           </div>
     {%endfor%}
     {%endif%}
      </div>
 
-     <h1>Advertisements</h1>
+     <h1 class="mt-5">Advertisements</h1>
      <div class="row flex-nowrap overflow-auto">
       {%if not events%}
       <h2>no ads</h2>
       {%else%}
  {%for i in ads %}
-     <div class="card m-2" style="width: 25rem;">
+     <div class="card m-2" style="background-color:#E5E5E5;width: 25rem;">
          <img src="{{i.Display_img}}" class="card-img-top" alt="...">
          <div class="card-body">
            <!-- <h5 class="card-title">Card title</h5> -->
-           <p class="card-text">{{i.Data}}</p>
-           <a href="#" class="btn btn-primary">dummy button</a>
+           <p class="card-text" style="color: #240536;">{{i.Data}}</p>
+       <a href="#" class="btn " style=" color: #E5E5E5;background-color: #240536;">dummy button</a>
          </div>
        </div>
  {%endfor%}

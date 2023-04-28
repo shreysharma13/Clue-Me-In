@@ -1,7 +1,7 @@
 {%extends 'base.html' %}
 
 {% block content %}
-
+{% if myDetails.U_type != 1 %}
 <div class="section">
 		<div class="container">
 			<div class="row full-height justify-content-center">
@@ -43,7 +43,7 @@
 								<div class="card-back">
 									<div class="center-wrap">
 										<div class="section text-center">
-											<h4 class="mb-4 pb-3">Sign Up</h4>
+											<h4 class="mb-4 pb-3">Private</h4>
 
                       <!-- private form starts here -->
                       <form action="{{ url_for('pvt_dashboard', club_id=cid) }}" method="POST">
@@ -75,7 +75,7 @@
 	    </div>
 	</div>
 </div>
-
+{%endif%}
 <!-- <div class="d-flex">
 
 
@@ -130,6 +130,8 @@
   
 
 </div> -->
+<div>
+<h1>Meetings</h1>
 {% if deadlines %}
   <div class="container">
     <table class="table table-dark table-striped">
@@ -153,9 +155,11 @@
     <h2>No due deadlines</h2>
   </div>
 {% endif %}
-
+</div>
+<div>
+<h1 class="mt-5">Deadlines</h1>
 {% if meetings %}
-   
+   <div class="container">
     <table class="table table-dark table-striped">
       <thead>
         <tr>
@@ -174,8 +178,8 @@
     </table>
     {%else%}
     <h2>No upcoming meetings</h2>
-  
+  </div>
   {% endif %}
-
+</div>
 	
   {% endblock %}
